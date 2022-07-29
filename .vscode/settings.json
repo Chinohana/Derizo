@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "\"powermode.enabled\"": "true",
+        "fstream": "cpp"
+    }
+}
