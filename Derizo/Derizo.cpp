@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 
-std::ofstream inFile;  // inFile an ifstream object (P.160) （这是个啥）
+std::ofstream inFile;  // inFile an ifstream object (P.160) 
 
 int InitializationData()  //数据的初始化
 {
@@ -13,7 +13,7 @@ int InitializationData()  //数据的初始化
 	auto Name = "None", Target = "None";
 	int Target_Money = 0, Your_Money = 0, Left_Money = 0, Completeness = 0;  //定义并初始化各个数据，（可以考虑使用类与对象）
 	inFile.open("data.txt");
-	inFile << Name << endl << Target << endl << Target_Money << endl << Your_Money;
+	inFile << Name << endl << Target << endl << Target_Money << endl << Your_Money;  //写入数据
 	return 0;
 }
 
@@ -22,14 +22,14 @@ int WriteData(char Name, char Target, int Target_Money, int Your_Money)  //写�
 	using namespace std;
 	
 	inFile.open("data.txt");
-	if (inFile.is_open())
+	if (inFile.is_open())  //如果文件被正常打开
 	{
+		inFile << Name << endl << Target << endl << Target_Money << endl << Your_Money;  //那么就写入文件
+		inFile.close();
 		return 0;
 	}
-	else
+	else  //反则返回1
 	{
-		inFile << Name << endl << Target << endl << Target_Money << endl << Your_Money;
-		inFile.close(); 
 		return 1;
 	}
 	
@@ -45,7 +45,7 @@ int CheckData()  //检查数据是否存在
 	}
 	else
 	{
-		if (inFile.eof())  //未修改的问题：无法输出正确的预想值
+		if (inFile.eof())  //如果文件啥都没有也返回1（未修改的问题：无法输出正确的预想值）
 		{
 			return 1;
 		}
