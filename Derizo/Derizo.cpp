@@ -9,7 +9,7 @@ std::ofstream inFile;  // inFile an ifstream object (P.160)
 int InitializationData()  //数据的初始化
 {
 	using namespace std;
-	ofstream file{ "data.txt" };  //创建一个文件
+	ofstream file{ "data" };  //创建一个文件
 	auto Name = "None", Target = "None";
 	int Target_Money = 0, Your_Money = 0, Left_Money = 0, Completeness = 0;  //定义并初始化各个数据，（可以考虑使用类与对象）
 	inFile.open("data.txt");
@@ -21,7 +21,7 @@ int WriteData(char Name, char Target, int Target_Money, int Your_Money)  //写�
 {
 	using namespace std;
 	
-	inFile.open("data.txt");
+	inFile.open("data");
 	if (inFile.is_open())  //如果文件被正常打开
 	{
 		inFile << Name << endl << Target << endl << Target_Money << endl << Your_Money;  //那么就写入文件
@@ -38,14 +38,17 @@ int WriteData(char Name, char Target, int Target_Money, int Your_Money)  //写�
 int CheckData()  //检查数据是否存在
 {
 	std::ifstream inFile;  
-	inFile.open("data.txt");  //inFile used to read data.txt (P.161)
+	inFile.open("data");  //inFile used to read data.txt (P.161)
 	if (!inFile.is_open())
 	{
 		return 1;  //如果找不到目标文件就返回1
 	}
 	else
 	{
-		if (inFile.eof())  //如果文件啥都没有也返回1（未修改的问题：无法输出正确的预想值）
+		char ch;
+		inFile >> ch;  //读取一个字符
+		bool a = inFile.eof();
+		if (inFile.eof())  //如果文件啥都没有也返回1
 		{
 			return 1;
 		}
