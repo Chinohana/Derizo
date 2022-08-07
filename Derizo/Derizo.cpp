@@ -35,13 +35,13 @@ int WriteData(char Name, char Target, int Target_Money, int Your_Money)  //写�
 	
 }
 
-int CheckData()  //检查数据是否存在
+int CheckData()  //检查数据是否存在以及数据是否正常
 {
 	std::ifstream inFile;  
 	inFile.open("data");  //inFile used to read data.txt (P.161)
 	if (!inFile.is_open())
 	{
-		return 1;  //如果找不到目标文件就返回1
+		return 0x0100;  //如果找不到目标文件就返回1
 	}
 	else
 	{
@@ -50,11 +50,11 @@ int CheckData()  //检查数据是否存在
 		bool a = inFile.eof();
 		if (inFile.eof())  //如果文件啥都没有也返回1
 		{
-			return 1;
+			return 0x0101;
 		}
 		else
 		{
-			return 0;
+			return 0x0000;
 		}
 	}
 	inFile.close();
@@ -68,17 +68,21 @@ int main()
 	int CheckDataReturn = CheckData();
 
 	cout << "Derizo-您的生活目标小助手" << endl << endl;  //主菜单的文字啥的，目前没有完成
-	if (CheckDataReturn == 1)
+	if (CheckDataReturn == 0x0101 or CheckDataReturn == 0x0102)
 	{
 		cout << "系统没有找到您的数据文件，您可能新用户？如果是，请按Enter，如果不是，请关闭软件。" << endl;
 		getchar();
 		cout << "欢迎！Derizo是您的生活目标小助手，您可以在此记录您的目标，还有完成多少等指标。事不宜迟，当您准备好后，请按Enter以开始。" << endl;
 		getchar();
 		system("cls");
+		cout << "接下来我们将初始化data文件，请确认文件内的文件不再重要。（若您是第一次使用本软件，或没有异议的，请按Enter开始初始化数据。）" << endl;
+		getchar();
 		InitializationData();
 		cout << "首先，你的名字是？" << endl;
 		cin >> Name;
 		cout << "很好，接下来交给我们……" << endl;
+		int FirstWriteDataReturn = WriteData(Name,NULL,NULL,NULL);  //尝试将名字写入数据
+		
 
 	}
 
