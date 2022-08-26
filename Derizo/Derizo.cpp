@@ -81,7 +81,7 @@ int main()
 		cout << "首先，你的名字是？" << endl;
 		cin >> Name;
 		cout << "很好，接下来交给我们……" << endl;
-		int FirstWriteDataReturn = WriteData(Name,NULL,NULL,NULL);  //尝试将名字写入数据
+		int FirstWriteDataReturn = WriteData(Name,NULL, NULL, NULL);  //尝试将名字写入数据
 		
 		if (FirstWriteDataReturn == 1)
 		{
@@ -99,3 +99,7 @@ int main()
 
 	return 0;
 }
+/*我已经不想再写下去了qwq
+希望未来能有个好心人能把这玩意儿写完吧uwu
+我在这谢谢你了uwu
+（真的会有人来吗）*/
